@@ -1,2 +1,2 @@
 # courseApi
-Api for students to register for
+Api for students to register for courses.
