@@ -35,9 +35,9 @@ public class Student {
     private Integer credits;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST,CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinTable(name = "courseJoinStudent",
-            joinColumns=@JoinColumn(name="student_id"),
-            inverseJoinColumns=@JoinColumn(name="course_id"))
+    @JoinTable(name = "coursesJoinStudents",
+            joinColumns=@JoinColumn(name="students_id"),
+            inverseJoinColumns=@JoinColumn(name="courses_id"))
     private List<Course> courses;
 
     public Student(){

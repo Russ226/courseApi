@@ -86,6 +86,15 @@ public class TestStudentQuery {
     }
 
 
+    @Test
+    public void testGetCourses(){
+        List<Course> courses = studentDAO.getStudentCourses("Mary", "Lamb");
+
+        assertEquals(courses.size(), 3);
+        assertEquals(courses.get(0), " Intro to History");
+    }
+
+
 
 
 

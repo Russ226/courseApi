@@ -21,11 +21,9 @@ CREATE TABLE IF NOT EXISTS students(
 );
 
 CREATE TABLE IF NOT EXISTS coursesJoinStudents(
-	id INT NOT NULL AUTO_INCREMENT,
 	grade VARCHAR(3),
 	courses_id INT,
 	students_id INT,
-	PRIMARY KEY (id),
 	FOREIGN KEY(courses_id) REFERENCES courses(id),
-    FOREIGN KEY(students_id) REFERENCES students(id)
+  FOREIGN KEY(students_id) REFERENCES students(id)
 );

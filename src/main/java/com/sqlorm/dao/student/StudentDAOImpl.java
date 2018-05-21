@@ -1,6 +1,7 @@
 package com.sqlorm.dao.student;
 
 
+import com.sqlorm.entity.Course;
 import com.sqlorm.entity.Student;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -26,7 +27,6 @@ public class StudentDAOImpl implements StudentDAO {
         Session session = sessionFactory.getCurrentSession();
         List<Student> student;
 
-
         String select = "FROM Student S WHERE S.firstName= :firstName  AND S.lastName= :lastName";
         Query query = session.createQuery(select, Student.class);
         query.setParameter("firstName", firstName);
@@ -39,8 +39,21 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
     @Override
-    public List<Student> getStudentCourses(String firstName, String lastName) {
-        return null;
+    public List<Course> getStudentCourses(String firstName, String lastName) {
+        Session session = sessionFactory.getCurrentSession();
+        List<Course> courses;
+        List <Student> students;
+
+        String select = "FROM Student S WHERE S.firstName= :firstName  AND S.lastName= :lastName";
+        Query query = session.createQuery(select, Student.class);
+        query.setParameter("firstName", firstName);
+        query.setParameter("lastName", lastName);
+
+        students = query.list();
+        courses = students.get(0).getCourses();
+
+        return courses;
+
     }
 
 
