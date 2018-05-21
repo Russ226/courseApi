@@ -1,4 +1,4 @@
-package com.sqlorm.course;
+package com.sqlorm.entity;
 
 import com.sun.istack.internal.NotNull;
 
