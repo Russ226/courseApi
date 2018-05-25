@@ -40,21 +40,35 @@ public class Course {
     @NotNull
     private int year;
 
+    @Column(name= "startHour")
+    private String startHour;
+
+    @Column(name= "endHour")
+    private String endHour;
+
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST,CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(name = "coursesJoinStudents",
             joinColumns=@JoinColumn(name="courses_id"),
             inverseJoinColumns=@JoinColumn(name="students_id"))
     private List<Student> students;
 
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST,CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinTable(name = "daysCoursesJoin",
+            joinColumns=@JoinColumn(name="courses_id"),
+            inverseJoinColumns=@JoinColumn(name="days_id"))
+    private List<Day> Days;
+
     Course(){
 
     }
 
-    public Course(String name, int code, String semester, int year) {
+    public Course(String name, int code, String semester, int year, String startHour, String endHour) {
         this.name = name;
         this.code = code;
         this.semester = semester;
         this.year = year;
+        this.startHour = startHour;
+        this.endHour = endHour;
     }
 
     public int getId() {
@@ -105,6 +119,31 @@ public class Course {
         this.students = students;
     }
 
+    public List<Day> getDays() {
+        return Days;
+    }
+
+    public void setDays(List<Day> days) {
+        Days = days;
+    }
+
+
+    public String getStartHour() {
+        return startHour;
+    }
+
+    public void setStartHour(String startHour) {
+        this.startHour = startHour;
+    }
+
+    public String getEndHour() {
+        return endHour;
+    }
+
+    public void setEndHour(String endHour) {
+        this.endHour = endHour;
+    }
+
     @Override
     public String toString() {
         return "Course{" +
@@ -113,7 +152,10 @@ public class Course {
                 ", code=" + code +
                 ", semester='" + semester + '\'' +
                 ", year=" + year +
+                ", startHour='" + startHour + '\'' +
+                ", endHour='" + endHour + '\'' +
                 ", students=" + students +
+                ", Days=" + Days +
                 '}';
     }
 }

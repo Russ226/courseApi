@@ -88,10 +88,10 @@ public class TestStudentQuery {
 
     @Test
     public void testGetCourses(){
-        List<Course> courses = studentDAO.getStudentCourses("Mary", "Lamb");
+        List<Course> courses = studentService.getStudentCourses("Mary", "Lamb");
 
         assertEquals(courses.size(), 3);
-        assertEquals(courses.get(0), " Intro to History");
+        assertEquals(courses.get(0).getName(), "Intro to History");
     }
 
 

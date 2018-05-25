@@ -34,7 +34,7 @@ public class Student {
     @Column(name="credits")
     private Integer credits;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST,CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST,CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(name = "coursesJoinStudents",
             joinColumns=@JoinColumn(name="students_id"),
             inverseJoinColumns=@JoinColumn(name="courses_id"))

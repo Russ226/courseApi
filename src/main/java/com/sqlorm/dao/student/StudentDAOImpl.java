@@ -9,7 +9,10 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.List;
+import java.util.logging.Logger;
 
 @Repository
 public class StudentDAOImpl implements StudentDAO {
@@ -17,11 +20,13 @@ public class StudentDAOImpl implements StudentDAO {
     @Autowired
     private SessionFactory sessionFactory;
 
+    // returns all students
     @Override
     public List<Student> getAllStudents() {
         return null;
     }
 
+    // returns student info
     @Override
     public List<Student> selectByName(String firstName, String lastName) {
         Session session = sessionFactory.getCurrentSession();
@@ -38,6 +43,7 @@ public class StudentDAOImpl implements StudentDAO {
         return student;
     }
 
+    // returns all courses of student
     @Override
     public List<Course> getStudentCourses(String firstName, String lastName) {
         Session session = sessionFactory.getCurrentSession();
