@@ -1,5 +1,6 @@
 package com.sqlorm.service.student;
 
+import com.sqlorm.entity.Course;
 import com.sqlorm.entity.Student;
 import org.hibernate.Session;
 
@@ -10,7 +11,7 @@ public interface StudentService {
 
     public List<Student> selectByName(String firstName, String lastName);
 
-    public List<Student> getStudentCourses(String firstName, String lastName);
+    List<Course> getStudentCourses(String firstName, String lastName);
 
 
 

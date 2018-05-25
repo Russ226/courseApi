@@ -1,6 +1,7 @@
 package com.sqlorm.service.student;
 
 import com.sqlorm.dao.student.StudentDAO;
+import com.sqlorm.entity.Course;
 import com.sqlorm.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,8 +30,8 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     @Transactional
-    public List<Student> getStudentCourses(String firstName, String lastName) {
-        return null;
+    public List<Course> getStudentCourses(String firstName, String lastName) {
+        return studentDAO.getStudentCourses(firstName, lastName);
     }
 
 }
