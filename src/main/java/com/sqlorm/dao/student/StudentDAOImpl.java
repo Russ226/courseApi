@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 
 @Repository
 public class StudentDAOImpl implements StudentDAO {
-    
+
     @Autowired
     private SessionFactory sessionFactory;
 
@@ -87,8 +87,6 @@ public class StudentDAOImpl implements StudentDAO {
 
 
         return thisSemesterCourses;
-
-
 
     }
 
