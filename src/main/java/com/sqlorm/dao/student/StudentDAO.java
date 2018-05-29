@@ -13,6 +13,8 @@ public interface StudentDAO {
 
     public List<Course> getStudentCourses(String firstName, String lastName);
 
+    public List<Course> getScheduler(String firstName, String lastName, String semester, int year);
+
 
 
 }

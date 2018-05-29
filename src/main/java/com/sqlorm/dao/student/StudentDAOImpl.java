@@ -11,12 +11,13 @@ import org.springframework.stereotype.Repository;
 
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
 @Repository
 public class StudentDAOImpl implements StudentDAO {
-
+    
     @Autowired
     private SessionFactory sessionFactory;
 
@@ -59,6 +60,35 @@ public class StudentDAOImpl implements StudentDAO {
         courses = students.get(0).getCourses();
 
         return courses;
+
+    }
+
+    @Override
+    public List<Course> getScheduler(String firstName, String lastName, String semester, int year) {
+        Session session = sessionFactory.getCurrentSession();
+        List<Course> courses;
+        List <Student> students;
+
+        String select = "FROM Student S WHERE S.firstName= :firstName  AND S.lastName= :lastName";
+        Query query = session.createQuery(select, Student.class);
+        query.setParameter("firstName", firstName);
+        query.setParameter("lastName", lastName);
+
+
+        students = query.list();
+        courses = students.get(0).getCourses();
+        List<Course> thisSemesterCourses = new ArrayList();
+
+        for(Course course :courses){
+            if(course.getSemester() == semester && course.getYear() == year){
+                thisSemesterCourses.add(course);
+            }
+        }
+
+
+        return thisSemesterCourses;
+
+
 
     }
 
