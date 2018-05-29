@@ -94,6 +94,15 @@ public class TestStudentQuery {
         assertEquals(courses.get(0).getName(), "Intro to History");
     }
 
+    @Test
+    public void GetThisSemestersCourses(){
+        List<Course> courses = studentService.getSchedule("Mary", "Lamb", "spring", 2018);
+
+        assertEquals(courses.get(0).getName(), "Intro to History");
+        assertEquals( 3, courses.size());
+
+    }
+
 
 
 

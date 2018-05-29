@@ -3,6 +3,7 @@ package com.sqlorm.dao.student;
 
 import com.sqlorm.entity.Course;
 import com.sqlorm.entity.Student;
+import org.hibernate.Filter;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -64,8 +65,11 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
     @Override
-    public List<Course> getScheduler(String firstName, String lastName, String semester, int year) {
+    public List<Course> getSchedule(String firstName, String lastName, String semester, int year) {
         Session session = sessionFactory.getCurrentSession();
+        Filter filter = session.enableFilter("semester");
+        filter.setParameter("semester", semester);
+
         List<Course> courses;
         List <Student> students;
 
@@ -74,19 +78,10 @@ public class StudentDAOImpl implements StudentDAO {
         query.setParameter("firstName", firstName);
         query.setParameter("lastName", lastName);
 
-
         students = query.list();
         courses = students.get(0).getCourses();
-        List<Course> thisSemesterCourses = new ArrayList();
 
-        for(Course course :courses){
-            if(course.getSemester() == semester && course.getYear() == year){
-                thisSemesterCourses.add(course);
-            }
-        }
-
-
-        return thisSemesterCourses;
+        return courses;
 
     }
 
