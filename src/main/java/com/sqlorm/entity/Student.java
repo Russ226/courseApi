@@ -1,6 +1,9 @@
 package com.sqlorm.entity;
 
 import com.sun.istack.internal.NotNull;
+import org.hibernate.annotations.Filter;
+import org.hibernate.annotations.FilterDef;
+import org.hibernate.annotations.ParamDef;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -38,6 +41,9 @@ public class Student {
     @JoinTable(name = "coursesJoinStudents",
             joinColumns=@JoinColumn(name="students_id"),
             inverseJoinColumns=@JoinColumn(name="courses_id"))
+
+    @Filter(name = "semester",condition="semester = :semester")
+    @Filter(name = "year",condition="year = :year")
     private List<Course> courses;
 
     public Student(){

@@ -1,4 +1,4 @@
-INSERT INTO courses(name, code, semester, year) VALUES
+INSERT INTO courses(name, code, semester, year, startHour, endHour) VALUES
 	("Intro to History", 1000, "spring", 2018, "12:30pm", "2:00pm"),
 	("Classical Cultures", 2300,"spring", 2018, "12:30pm", "2:00pm"),
 	("Intro to Java Programming", 1000, "spring", 2018, "12:45pm", "2:15pm"),
@@ -8,7 +8,7 @@ INSERT INTO courses(name, code, semester, year) VALUES
 	("Object Oriented Programming", 3100, "spring", 2018, "8:00am", "10:15pm"),
 	("Organic Chemistry", 2100, "spring", 2018, "8:00pm", "10:00pm"),
 	("Calculus I", 1050, "spring", 2018, "9:10am", "10:15am"),
-	("Linear Algebra", 2300, "spring", 2018, , "9:10pm", "10:15pm");
+	("Linear Algebra", 2300, "spring", 2018, "9:10pm", "10:15pm");
 
 INSERT INTO days(dayOfWeek) VALUES
   ("saturday"),
@@ -17,7 +17,7 @@ INSERT INTO days(dayOfWeek) VALUES
   ("tuesday"),
   ("wednesday"),
   ("thursday"),
-  ("friday"),
+  ("friday");
 
 
 INSERT INTO students(firstName, lastName) VALUES
@@ -27,7 +27,7 @@ INSERT INTO students(firstName, lastName) VALUES
 	("Richard", "Mann");
 
 INSERT INTO coursesJoinStudents(courses_id, students_id) VALUES
-	((SELECT id FROM courses WHERE name="Intro to History"), (SELECT id FROM days WHERE firstName="Bob" AND lastName="TheBuilder")),
+	((SELECT id FROM courses WHERE name="Intro to History"), (SELECT id FROM students WHERE firstName="Bob" AND lastName="TheBuilder")),
 	((SELECT id FROM courses WHERE name="Political Sociology"), (SELECT id FROM students WHERE firstName="Bob" AND lastName="TheBuilder")),
 	((SELECT id FROM courses WHERE name="Linear Algebra"), (SELECT id FROM students WHERE firstName="Bob" AND lastName="TheBuilder")),
 
@@ -43,7 +43,7 @@ INSERT INTO coursesJoinStudents(courses_id, students_id) VALUES
 	((SELECT id FROM courses WHERE name="Intro to Java Programming"), (SELECT id FROM students WHERE firstName="Richard" AND lastName="Mann")),
 	((SELECT id FROM courses WHERE name="Intro to History"), (SELECT id FROM students WHERE firstName="Richard" AND lastName="Mann"));
 
-INSERT INTO daysCoursesJoin(days_id, courses_id) VALUES
+INSERT INTO daysCoursesJoin(courses_id, days_id) VALUES
   ((SELECT id FROM courses WHERE name="Intro to History"), (SELECT id FROM days WHERE dayOfWeek = "saturday")),
 	((SELECT id FROM courses WHERE name="Intro to History"), (SELECT id FROM days WHERE dayOfWeek = "thursday")),
 	((SELECT id FROM courses WHERE name="Intro to History"), (SELECT id FROM days WHERE dayOfWeek = "wednesday")),
@@ -80,4 +80,4 @@ INSERT INTO daysCoursesJoin(days_id, courses_id) VALUES
 	((SELECT id FROM courses WHERE name="Calculus I"), (SELECT id FROM days WHERE dayOfWeek ="wednesday" )),
 	((SELECT id FROM courses WHERE name="Calculus I"), (SELECT id FROM days WHERE dayOfWeek = "monday")),
 
-  ((SELECT id FROM courses WHERE name="Linear Algebra"), (SELECT id FROM days WHERE dayOfWeek = "saturday")),
+  ((SELECT id FROM courses WHERE name="Linear Algebra"), (SELECT id FROM days WHERE dayOfWeek = "saturday"));

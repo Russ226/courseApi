@@ -33,5 +33,10 @@ public class StudentServiceImpl implements StudentService {
     public List<Course> getStudentCourses(String firstName, String lastName) {
         return studentDAO.getStudentCourses(firstName, lastName);
     }
+    @Override
+    @Transactional
+    public List<Course> getSchedule(String firstName, String lastName, String semester, int year){
+        return studentDAO.getSchedule(firstName, lastName,semester,year);
+    }
 
 }

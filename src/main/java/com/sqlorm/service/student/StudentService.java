@@ -13,6 +13,8 @@ public interface StudentService {
 
     List<Course> getStudentCourses(String firstName, String lastName);
 
+    public List<Course> getSchedule(String firstName, String lastName, String semester, int year);
+
 
 
 }

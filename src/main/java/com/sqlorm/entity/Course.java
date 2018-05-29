@@ -1,6 +1,8 @@
 package com.sqlorm.entity;
 
 import com.sun.istack.internal.NotNull;
+import org.hibernate.annotations.FilterDef;
+import org.hibernate.annotations.ParamDef;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,11 +15,19 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.sql.DataSource;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name = "courses")
-public class Course {
+@FilterDef(name="semester", parameters={@ParamDef( name="semester", type="string" )})
+@FilterDef(name="year", parameters={@ParamDef( name="year", type="integer" )})
+public class Course{
+
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -144,6 +154,22 @@ public class Course {
         this.endHour = endHour;
     }
 
+    private int timeCompare(String time) throws ParseException {
+        DateFormat format = new SimpleDateFormat("HH:mm aa");
+
+        Date d1 = format.parse(this.startHour);
+        Date d2 = format.parse(time);
+        if(d1.before(d2)){
+            return 0;
+        }if(d1.after(d2)){
+            return 1;
+        }if(d1.equals(d2)){
+            return 2;
+        }
+
+        return -1;
+    }
+
     @Override
     public String toString() {
         return "Course{" +
@@ -158,4 +184,6 @@ public class Course {
                 ", Days=" + Days +
                 '}';
     }
+
+
 }
