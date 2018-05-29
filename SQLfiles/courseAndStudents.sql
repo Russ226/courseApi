@@ -27,18 +27,20 @@ CREATE TABLE IF NOT EXISTS coursesJoinStudents(
 	grade VARCHAR(3),
 	courses_id INT,
 	students_id INT,
+	PRIMARY KEY(id),
 	FOREIGN KEY(courses_id) REFERENCES courses(id),
   FOREIGN KEY(students_id) REFERENCES students(id)
 );
 
 CREATE TABLE IF NOT EXISTS days(
   id INT NOT NULL AUTO_INCREMENT,
-  dayOfWeek VARCHAR(10)
+  dayOfWeek VARCHAR(10),
+  PRIMARY KEY(id)
 );
 
 CREATE TABLE IF NOT EXISTS daysCoursesJoin(
   days_id INT,
 	courses_id INT,
 	FOREIGN KEY(courses_id) REFERENCES courses(id),
-  FOREIGN KEY(days_id_id) REFERENCES days(id)
+  FOREIGN KEY(days_id) REFERENCES days(id)
 );
