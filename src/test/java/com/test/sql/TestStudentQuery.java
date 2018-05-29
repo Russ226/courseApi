@@ -95,8 +95,17 @@ public class TestStudentQuery {
     }
 
     @Test
-    public void GetThisSemestersCourses(){
+    public void TestThisSemestersCourses(){
         List<Course> courses = studentService.getSchedule("Mary", "Lamb", "spring", 2018);
+
+        assertEquals(courses.get(0).getName(), "Intro to History");
+        assertEquals( 3, courses.size());
+
+    }
+
+    @Test
+    public void TestYearParamFilterWithSemester(){
+        List<Course> courses = studentService.getSchedule("Mary", "Lamb", "fall", 2018);
 
         assertEquals(courses.get(0).getName(), "Intro to History");
         assertEquals( 3, courses.size());

@@ -67,8 +67,11 @@ public class StudentDAOImpl implements StudentDAO {
     @Override
     public List<Course> getSchedule(String firstName, String lastName, String semester, int year) {
         Session session = sessionFactory.getCurrentSession();
-        Filter filter = session.enableFilter("semester");
-        filter.setParameter("semester", semester);
+        Filter semesterFilter = session.enableFilter("semester");
+        semesterFilter.setParameter("semester", semester);
+        Filter yearFilter = session.enableFilter("year");
+        yearFilter.setParameter("year", year);
+
 
         List<Course> courses;
         List <Student> students;

@@ -1,6 +1,8 @@
 package com.sqlorm.entity;
 
 import com.sun.istack.internal.NotNull;
+import org.hibernate.annotations.FilterDef;
+import org.hibernate.annotations.ParamDef;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -22,6 +24,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "courses")
+@FilterDef(name="semester", parameters={@ParamDef( name="semester", type="string" )})
+@FilterDef(name="year", parameters={@ParamDef( name="year", type="integer" )})
 public class Course{
 
 
