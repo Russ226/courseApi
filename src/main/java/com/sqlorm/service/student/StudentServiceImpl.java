@@ -39,4 +39,23 @@ public class StudentServiceImpl implements StudentService {
         return studentDAO.getSchedule(firstName, lastName,semester,year);
     }
 
+    @Override
+    @Transactional
+    public void registerStudent(String firstName, String lastName, int credits){
+        studentDAO.registerStudent(firstName, lastName, credits);
+    }
+
+    @Override
+    @Transactional
+    public void registerStudent(String firstName, String lastName){
+        studentDAO.registerStudent(firstName, lastName, 0);
+    }
+
+    @Override
+    @Transactional
+    public void addCourse(String firstName, String lastName, Course course) {
+        studentDAO.addCourse(firstName, lastName, course);
+    }
+
+
 }

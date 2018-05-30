@@ -96,6 +96,10 @@ public class Student {
         this.courses = courses;
     }
 
+    public void addcourse(Course course){
+        courses.add(course);
+    }
+
     @Override
     public String toString() {
         return "Student{" +
