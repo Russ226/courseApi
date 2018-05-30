@@ -88,5 +88,17 @@ public class StudentDAOImpl implements StudentDAO {
 
     }
 
+    @Override
+    public void registerStudent(String firstName, String lastName, int credits) {
+        Session session = sessionFactory.getCurrentSession();
+        Student newStudent = new Student(firstName, lastName, credits);
+        session.save(newStudent);
+    }
+
+    @Override
+    public void registerStudent(String firstName, String lastName) {
+        registerStudent(firstName,lastName,0);
+    }
+
 
 }

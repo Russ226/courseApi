@@ -112,6 +112,32 @@ public class TestStudentQuery {
 
     }
 
+    @Test
+    public void TestRegisteringNewStudent(){
+        studentService.registerStudent("Zack", "LaPenis");
+
+        List<Student> students = studentService.selectByName("Zack", "LaPenis");
+
+        assertEquals(1, students.size());
+        assertEquals("Zack", students.get(0).getFirstName());
+
+
+    }
+
+
+    @Test
+    public void TestRegisteringNewStudentWithCredits(){
+        studentService.registerStudent("Mortie", "Sanchez", 5);
+
+        List<Student> students = studentService.selectByName("Mortie", "Sanchez");
+
+        assertEquals(1, students.size());
+        assertEquals("Mortie", students.get(0).getFirstName());
+        assertEquals(java.util.Optional.of(5), java.util.Optional.ofNullable(students.get(0).getCredits()));
+
+
+    }
+
 
 
 

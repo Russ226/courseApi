@@ -15,6 +15,11 @@ public interface StudentService {
 
     public List<Course> getSchedule(String firstName, String lastName, String semester, int year);
 
+    public void registerStudent(String firstName, String lastName, int credits);
+
+    public void registerStudent(String firstName, String lastName);
+
+
 
 
 }
