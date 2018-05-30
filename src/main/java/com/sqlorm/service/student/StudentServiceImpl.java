@@ -51,5 +51,11 @@ public class StudentServiceImpl implements StudentService {
         studentDAO.registerStudent(firstName, lastName, 0);
     }
 
+    @Override
+    @Transactional
+    public void addCourse(String firstName, String lastName, Course course) {
+        studentDAO.addCourse(firstName, lastName, course);
+    }
+
 
 }

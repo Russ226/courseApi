@@ -4,6 +4,7 @@ import com.example.courseapi.CourseapiApplication;
 import com.sqlorm.dao.student.StudentDAO;
 import com.sqlorm.entity.Course;
 import com.sqlorm.entity.Student;
+import com.sqlorm.service.course.CourseService;
 import com.sqlorm.service.student.StudentService;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -36,6 +37,9 @@ public class TestStudentQuery {
 
     @Autowired
     private StudentDAO studentDAO;
+
+    @Autowired
+    private CourseService courseService;
 
     @Test
     @Transactional
@@ -136,6 +140,17 @@ public class TestStudentQuery {
         assertEquals(java.util.Optional.of(5), java.util.Optional.ofNullable(students.get(0).getCredits()));
 
 
+    }
+
+    @Test
+    public void testStudentReigsterForCourse(){
+        List<Course> courses = courseService.getCourse("Classical Cultures", 2300,"spring", 2018 );
+        studentService.addCourse("Mortie", "Sanchez", courses.get(0));
+
+        List<Course> studentCourses = studentService.getStudentCourses("Mortie", "Sanchez");
+
+        assertEquals(studentCourses.size(), 1);
+        assertEquals(studentCourses.get(0).getName(),"Classical Cultures");
     }
 
 

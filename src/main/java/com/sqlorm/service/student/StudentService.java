@@ -19,6 +19,7 @@ public interface StudentService {
 
     public void registerStudent(String firstName, String lastName);
 
+    public void addCourse(String firstName, String lastName, Course course);
 
 
 
