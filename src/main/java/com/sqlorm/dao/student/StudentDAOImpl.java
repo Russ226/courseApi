@@ -100,5 +100,22 @@ public class StudentDAOImpl implements StudentDAO {
         registerStudent(firstName,lastName,0);
     }
 
+    @Override
+    public void addCourse(String firstName, String lastName, Course course) {
+        Session session = sessionFactory.getCurrentSession();
+
+        List <Student> students;
+
+        String select = "FROM Student S WHERE S.firstName= :firstName  AND S.lastName= :lastName";
+        Query query = session.createQuery(select, Student.class);
+        query.setParameter("firstName", firstName);
+        query.setParameter("lastName", lastName);
+
+        students = query.list();
+
+        students.get(0).addcourse(course);
+        
+    }
+
 
 }
